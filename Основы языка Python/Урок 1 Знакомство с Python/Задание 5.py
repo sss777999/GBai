@@ -13,7 +13,7 @@ if rev > cos:
     rentability = (rev - cos) / rev * 100
     print(f'Рентабельность: {round(rentability)}%')
     numbst = int(input('Введите численность сотрудников: '))
-    prperemp = round((rev - cos) / numbst)
-    print(f'Прибыль на одного сотрудника составляет: {prperemp}₽')
+    prperemp = (rev - cos) / numbst
+    print(f'Прибыль на одного сотрудника составляет: {prperemp:.0f}₽')
 if rev < cos:
     print('Фирма работает в убыток')
