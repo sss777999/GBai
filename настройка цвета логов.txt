@@ -1,1 +1,0 @@
-git config --global alias.gg 'log --pretty=format:"%C(yellow)%h%Creset -%C(green)%d%Creset %s %C(bold blue)(%cn) %C(green)%cd%Creset" --graph --date=format:"%d.%m.%Y %H:%M"'
