@@ -1,0 +1,47 @@
+1
+cat file1 > file2
+ln file1 file3
+rm file1
+остался file4 с таким же inode и содержимым
+file3 битая ссылка на file1
+cat file3 нет такого файла, до удаления показывал содержимого file2.
+
+2
+mv file1 f1 и т.д.
+ln f1 f5
+mv f5 test
+Ссылки f3 и перемещенная f5 будут битыми (1 - после переименования, 2 - после перемещнеия
+в другой каталог).
+
+3
+touch file{1,2}
+
+chmod 664 fi1
+chmod g+w fi1
+chmod 600 fi2
+chmod g-rw,o-r fi2
+
+4
+sudo cat /etc/sudoers
+Посмотреть кто имеет право на sudo. Выбрал группу sudo, добавить пользователя в группу
+sudo useradd -m -G sudo -s /bin/bash us1
+Проверил группы cat /etc/group, в группе sudo появился пользователь us1, также появилась
+и группа us1 в конце файла.
+
+5
+sudo groupadd developer
+sudo useradd -m -G developer user1
+sudo useradd -m -G developer user2
+mkdir together
+sudo chgrp developer together
+chmod 770 together (или от owner не переходит, чтобы 6 задание выполнять, 
+изначально ставил 660)
+
+6
+mkdir t1
+chmod 1750 t1
+
+7
+mkdir t9
+touch {1..3}
+chmod 333 t9
