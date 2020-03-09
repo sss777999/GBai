@@ -1,3 +1,4 @@
+USE vk;
 -- Таблица лайков
 DROP TABLE IF EXISTS likes;
 CREATE TABLE likes (
@@ -37,12 +38,11 @@ INSERT INTO likes
 -- 1 задание, предложений нет для улучшения.
 
 -- 2 задание
-SELECT SUM(total) AS 'Amount of likes' FROM (SELECT COUNT(*) AS total, target_id, (SELECT birthday FROM profiles WHERE target_id = user_id) AS bday FROM likes GROUP BY 2 ORDER BY 3 DESC LIMIT 10) as a;
-
+SELECT SUM(total) AS 'Amount of likes' FROM (SELECT COUNT(*) AS total, target_id, (SELECT birthday FROM profiles WHERE target_id = user_id) AS bday FROM likes WHERE target_type_id = 2 GROUP BY 2 ORDER BY 3 DESC LIMIT 10) as a;
 -- 3 задание
 SELECT IF 
-((SELECT COUNT(tart) AS 'sum m' FROM (SELECT target_id, user_id, (SELECT gender FROM profiles WHERE target_id = user_id) AS tart FROM likes) as m WHERE tart = 'm') >
-(SELECT COUNT(tart) AS 'sum m' FROM (SELECT target_id, user_id, (SELECT gender FROM profiles WHERE target_id = user_id) AS tart FROM likes) as e WHERE tart = 'f'), 'more male', 'more female');
+((SELECT COUNT(tart) AS 'sum m' FROM (SELECT user_id AS m, (SELECT gender FROM profiles WHERE m = user_id) AS tart FROM likes) as r WHERE tart = 'm') >
+(SELECT COUNT(tart) AS 'sum m' FROM (SELECT user_id AS f, (SELECT gender FROM profiles WHERE f = user_id) AS tart FROM likes) as e WHERE tart = 'f'), 'more male', 'more female');
 
 -- SELECT COUNT(tart) AS 'sum male' FROM (SELECT target_id, user_id, (SELECT gender FROM profiles WHERE target_id = user_id) AS tart FROM likes) as m WHERE tart = 'm';
 -- SELECT COUNT(tart) AS 'sum female' FROM (SELECT target_id, user_id, (SELECT gender FROM profiles WHERE target_id = user_id) AS tart FROM likes) as e WHERE tart = 'f';
@@ -65,33 +65,10 @@ SELECT COUNT(*) AS total, from_user_id, (SELECT birthday FROM profiles WHERE fro
 */
 
 -- выбор рандомно 10 самых неактивных по трем источникам: лайки, посты, сообщения (чтобы user был хотя бы в 2 группах):
-SELECT COUNT(target_id) AS 'count', target_id as 'ID of user' FROM 
-((SELECT COUNT(*) AS total, target_id FROM likes GROUP BY 2 ORDER BY 1, 2)
+SELECT COUNT(user_id) AS 'count', user_id as 'ID of user' FROM 
+((SELECT COUNT(*) AS total, user_id FROM likes GROUP BY 2)
 UNION ALL
-(SELECT COUNT(*) AS total, user_id FROM posts GROUP BY 2 ORDER BY 1, 2)
+(SELECT COUNT(*) AS total, user_id FROM posts GROUP BY 2)
 UNION ALL
-(SELECT COUNT(*) AS total, from_user_id FROM messages GROUP BY 2 ORDER BY 1, 2)
+(SELECT COUNT(*) AS total, from_user_id FROM messages GROUP BY 2)
 ) as h GROUP BY 2 HAVING count > 1 ORDER BY 1 DESC LIMIT 10;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
