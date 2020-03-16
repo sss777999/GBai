@@ -107,3 +107,13 @@ SELECT CONCAT(first_name, ' ', last_name) AS user,
 	ORDER BY overall_activity
 	LIMIT 10;
 
+-- возможно такой вариант, делал ночью, сейчас днем пересмотрел немного, суть я понимаю хорошо, забыл немного структуру вк дб
+SELECT 
+CONCAT(users.id, ' ', first_name, ' ', last_name), COUNT(*) 
+FROM users 
+JOIN posts ON posts.user_id = users.id 
+JOIN likes ON likes.target_id = users.id
+JOIN messages ON messages.from_user_id = users.id
+GROUP BY 1 
+ORDER BY 2 LIMIT 10;
+
