@@ -43,7 +43,8 @@ COUNT(communities_users.user_id) OVER (PARTITION BY communities_users.community_
 -- Задание 3
 /*
  * 1) сделать ENUM;
- * 2) сделать индексы на likes.user_id и likes.target_id, идекс на id в profiles;
+ * 2) сделать общий индекс на likes.user_id и likes.target_id, media, messages;
+ * 3) индекс на id в profiles;
  */
 
 
