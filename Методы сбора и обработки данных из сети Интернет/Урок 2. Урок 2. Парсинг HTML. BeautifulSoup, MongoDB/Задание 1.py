@@ -10,6 +10,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import re
 import pandas as pd
+import json
 
 # чтобы смотреть колонки датафрейма
 desired_width = 320
@@ -74,3 +75,5 @@ for i in vac:
 data.drop('salary', axis=1, inplace=True)  # salary можно не drop и проверить, по этому слобцу сравнивал значения
 print(data)
 # на SuperJob таких вакансий нет ) думал тоже попробовать.
+
+data.to_csv('data.csv', encoding='utf-8')
