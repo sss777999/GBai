@@ -76,7 +76,7 @@ for i in vac:
             data.loc[data['name'] == i[1], 'min'] = i[2][1]
         if len(i[2]) > 2 and i[2][0] == 'до':
             data.loc[data['name'] == i[1], 'max'] = i[2][1]
-data.drop('salary', axis=1, inplace=True)  # salary можно не drop и проверить, по этому слобцу сравнивал значения
+data.drop('salary', axis=1, inplace=True)  # salary можно не drop и проверить, по этому столбцу сравнивал значения
 print(data)
 # на SuperJob таких вакансий нет ) думал тоже попробовать.
 
