@@ -1,7 +1,6 @@
 # ВАРИАНТ 2
 
 
-
 '''
 3) Написать программу, которая собирает «Хиты продаж» с сайта техники mvideo и складывает данные в БД.
 Магазины можно выбрать свои. Главный критерий выбора: динамически загружаемые товары
@@ -15,6 +14,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 from pymongo import MongoClient
+import json
 
 list = []
 chrome_options = Options()
@@ -33,12 +33,14 @@ while True:
     if but_not_active:
         for i in tov:
             data = i.get_attribute('data-product-info')
-            list.append(data)
+            jdata = json.loads(data)
+            print(jdata)
+            print(type(jdata))
+            list.append(jdata)
         driver.quit()
         break
 
-'''client = MongoClient('localhost', 27017)
+client = MongoClient('localhost', 27017)
 db = client['hits']
 hits = db.hits
 hits.insert_many(list), {'upsert': True}
-'''
