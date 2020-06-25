@@ -46,7 +46,7 @@ if __name__ == '__main__':
     process.crawl(LabirintparserSpider)
 
     # 2
-    process = CrawlerProcess(settings=crawler_settings)
+    # process = CrawlerProcess(settings=crawler_settings)
     process.crawl(Book24parserSpider)
 
     process.start()

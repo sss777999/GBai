@@ -44,7 +44,7 @@ if __name__ == '__main__':
     process.crawl(HhruparseSpider)
 
     # 2
-    process = CrawlerProcess(settings=crawler_settings)
+    # process = CrawlerProcess(settings=crawler_settings)
     process.crawl(SjSpider)
     # создать сначала второго паука
     # для второго паука
