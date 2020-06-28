@@ -37,6 +37,7 @@ class LeruaPhotosPipeline(ImagesPipeline):
                     yield scrapy.Request(img, meta=item)  # meta=item
                 except Exception as e:
                     print(e)
+        return item
 
     def file_path(self, request, response=None, info=None):
         item = request.meta

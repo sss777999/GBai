@@ -5,10 +5,15 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
-
+from pymongo import MongoClient
 
 class InstpagramparserPipeline:
+    def __init__(self):
+        # Если csv открыть файл на запись
+        client = MongoClient('localhost', 27017)
+        self.mongo_base = client.inst_users_parser
+
     def process_item(self, item, spider):
-        print(1)
+        collection = self.mongo_base[spider.name]
+        collection.insert_one(item)
         return item
