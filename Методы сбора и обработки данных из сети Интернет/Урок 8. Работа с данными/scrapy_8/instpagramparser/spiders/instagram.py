@@ -11,8 +11,8 @@ class InstagramSpider(scrapy.Spider):
     name = 'instagram'
     allowed_domains = ['instagram.com']
     start_urls = ['https://instagram.com/']
-    inst_login = 'oleg9997771'
-    inst_pass = '#PWD_INSTAGRAM_BROWSER:10:1593261781:AX1QAHBOPhftbw2p1+0Qgm1/jOfWpVf0Ike4RmOkZT1sNy1zZjgNH2yaWJcQH/K2YoHCpmpc3/qk8AT6WqXCHjMTBbdkHRxiKME2qjZKyZaNS1hEmnexoP+yD1ztK9MHDrtzyGRj9DUsjoCb3mvloyM='
+    inst_login = ''
+    inst_pass = ''
     inst_login_link = 'https://www.instagram.com/accounts/login/ajax/'
     parse_users = ['fight_.wear', 'p4pchampwear'] # пытался найти, чтобы не много подписчиков и подписок было
     graphql_url = 'https://www.instagram.com/graphql/query/?'
